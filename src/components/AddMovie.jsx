@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import addMovieInputs from '../formElements';
+import InputText from './formComponents/InputText';
+import TextArea from './formComponents/TextArea';
 
 class AddMovie extends Component {
   constructor() {
@@ -20,43 +23,30 @@ class AddMovie extends Component {
   }
 
   render() {
-    const { title, subtitle, imagePath } = this.state;
+    const { storyline } = this.state;
+    const stateObj = this.state;
     const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
-        <label htmlFor="title-input" data-testid="title-input-label">
-          Título
-          <input
-            type="text"
-            data-testid="title-input"
-            id="title-input"
-            value={ title }
-            name="title"
-            onChange={ this.handlerChange }
-          />
-        </label>
-        <label htmlFor="subtitle-input" data-testid="subtitle-input-label">
-          Subtítulo
-          <input
-            type="text"
-            data-testid="subtitle-input"
-            id="subtitle-input"
-            value={ subtitle }
-            name="subtitle"
-            onChange={ this.handlerChange }
-          />
-        </label>
-        <label htmlFor="image-input" data-testid="image-input-label">
-          Imagem
-          <input
-            type="text"
-            data-testid="image-input"
-            id="image-input"
-            value={ imagePath }
-            name="imagePath"
-            onChange={ this.handlerChange }
-          />
-        </label>
+        {addMovieInputs.map(({
+          inputId, inputName, labelDataId, labelText,
+        }) => (<InputText
+          inputId={ inputId }
+          inputName={ inputName }
+          handler={ this.handlerChange }
+          inputValue={ stateObj[inputName] }
+          labelDataId={ labelDataId }
+          labelText={ labelText }
+          key={ inputId }
+        />))}
+        <TextArea
+          labelText="Sinopse"
+          labelDataId="storyline-input-label"
+          textValue={ storyline }
+          textId="storyline-input"
+          handler={ this.handlerChange }
+          textName="storyline"
+        />
       </form>
     );
   }
