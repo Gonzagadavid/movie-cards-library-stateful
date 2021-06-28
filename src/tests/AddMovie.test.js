@@ -86,7 +86,7 @@ describe.only('8 - Renderize um input do tipo texto dentro do formulário em `<A
   });
 });
 
-describe('9 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o subtítulo do novo filme', () => {
+describe.only('9 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o subtítulo do novo filme', () => {
   it('Renderize um input de texto para quem usa escrever o subtítulo do filme', () => {
     expect(subtitleInput).toBeInTheDocument();
   });
