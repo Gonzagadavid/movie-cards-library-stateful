@@ -96,8 +96,8 @@ controlada por estados.
 
 ## Data de entrega
 
-  - Serão `X` dias de projeto.
-  - Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+  - Serão `2` dias de projeto.
+  - Data de entrega para avaliação final do projeto: `06/07/2021 - 14:00h`.
 
 # Instruções para entregar seu projeto
 
