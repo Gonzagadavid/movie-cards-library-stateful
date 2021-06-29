@@ -1,21 +1,66 @@
-// import React, { Component } from 'react';
+import React, { Component } from 'react';
 
-// import MovieList from './MovieList';
-// import SearchBar from './SearchBar';
-// import AddMovie from './AddMovie';
+import { arrayOf, objectOf } from 'prop-types';
+import MovieList from './MovieList';
+import SearchBar from './SearchBar';
+import AddMovie from './AddMovie';
 
-// class MovieLibrary extends Component {
-//   render() {
-//     const { movies } = this.props;
-//     return (
-//       <div>
-//         <h2> My awesome movie library </h2>
-//         <SearchBar />
-//         <MovieList movies={ movies } />
-//         <AddMovie />
-//       </div>
-//     );
-//   }
-// }
+class MovieLibrary extends Component {
+  constructor() {
+    super();
+    this.onSearchTextChange = this.onSearchTextChange.bind(this);
+    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
+    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
+    this.state = {
+      searchText: '',
+      bookmarkedOnly: false,
+      selectedGenre: '',
+      ...this.props,
+    };
+  }
 
-// export default MovieLibrary;
+  onSearchTextChange({ target }) {
+    const { value } = target;
+    this.setState({ searchText: value });
+  }
+
+  onBookmarkedChange({ target }) {
+    const { checked } = target;
+    this.setState({ bookmarkedOnly: checked });
+  }
+
+  onSelectedGenreChange({ target }) {
+    const { value } = target;
+    this.setState({ selectedGenre: value });
+  }
+
+  render() {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    const { movies } = this.props;
+    return (
+      <div>
+        <h2> My awesome movie library </h2>
+        <SearchBar
+          searchText={ searchText }
+          onSearchTextChange={ this.onSearchTextChange }
+          bookmarkedOnly={ bookmarkedOnly }
+          onBookmarkedChange={ this.onBookmarkedChange }
+          selectedGenre={ selectedGenre }
+          onSelectedGenreChange={ this.onSelectedGenreChange }
+        />
+        <MovieList movies={ movies } />
+        <AddMovie />
+      </div>
+    );
+  }
+}
+
+MovieLibrary.propTypes = {
+  movies: arrayOf(objectOf),
+};
+
+MovieLibrary.defaultProps = {
+  movies: ['object'],
+};
+
+export default MovieLibrary;
