@@ -1,55 +1,44 @@
 import React, { Component } from 'react';
-import addMovieInputs from '../formElements';
-import InputText from './formComponents/InputText';
-import TextArea from './formComponents/TextArea';
+import { func } from 'prop-types';
+import FormAddMovie from './formComponents/FormAddMovie';
 
 class AddMovie extends Component {
   constructor() {
     super();
+    this.resetState = this.resetState.bind(this);
     this.handlerChange = this.handlerChange.bind(this);
     this.state = {
-      subtitle: '',
-      title: '',
-      imagePath: '',
-      storyline: '',
-      rating: 0,
-      genre: 'action',
+      subtitle: '', title: '', imagePath: '', storyline: '', rating: 0, genre: 'action',
     };
   }
 
   handlerChange({ target }) {
     const { name, value } = target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: name === 'rating' ? Number(value) : value });
+  }
+
+  resetState(callback) {
+    callback({ ...this.state });
+    this.setState({
+      subtitle: '', title: '', imagePath: '', storyline: '', rating: 0, genre: 'action',
+    });
   }
 
   render() {
-    const { storyline } = this.state;
-    const stateObj = this.state;
+    const { state } = this;
     const { onClick } = this.props;
     return (
-      <form data-testid="add-movie-form">
-        {addMovieInputs.map(({
-          inputId, inputName, labelDataId, labelText,
-        }) => (<InputText
-          inputId={ inputId }
-          inputName={ inputName }
-          handler={ this.handlerChange }
-          inputValue={ stateObj[inputName] }
-          labelDataId={ labelDataId }
-          labelText={ labelText }
-          key={ inputId }
-        />))}
-        <TextArea
-          labelText="Sinopse"
-          labelDataId="storyline-input-label"
-          textValue={ storyline }
-          textId="storyline-input"
-          handler={ this.handlerChange }
-          textName="storyline"
-        />
-      </form>
+      <FormAddMovie
+        formId="add-movie-form"
+        state={ state }
+        resetState={ () => this.resetState(onClick) }
+        handlerChange={ this.handlerChange }
+      />
     );
   }
 }
 
+AddMovie.propTypes = {
+  onClick: func.isRequired,
+};
 export default AddMovie;

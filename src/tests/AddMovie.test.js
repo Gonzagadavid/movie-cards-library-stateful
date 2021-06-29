@@ -53,19 +53,19 @@ beforeEach(() => {
   sendButton = queryByTestId('send-button');
 });
 
-describe.only('6 - Crie um componente chamado `<AddMovie />`', () => {
+describe('6 - Crie um componente chamado `<AddMovie />`', () => {
   it('Renderize o componente', () => {
     render(<AddMovie onClick={ () => jest.fn() } />);
   });
 });
 
-describe.only('7 - Renderize um formulário dentro de `<AddMovie />`', () => {
+describe('7 - Renderize um formulário dentro de `<AddMovie />`', () => {
   it('Renderize 1, e apenas 1, form', () => {
     expect(form).toHaveLength(1);
   });
 });
 
-describe.only('8 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o título do novo filme', () => {
+describe('8 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o título do novo filme', () => {
   it('Renderize um input de texto para quem usa escrever o titulo do filme', () => {
     expect(titleInput).toBeInTheDocument();
   });
@@ -86,7 +86,7 @@ describe.only('8 - Renderize um input do tipo texto dentro do formulário em `<A
   });
 });
 
-describe.only('9 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o subtítulo do novo filme', () => {
+describe('9 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o subtítulo do novo filme', () => {
   it('Renderize um input de texto para quem usa escrever o subtítulo do filme', () => {
     expect(subtitleInput).toBeInTheDocument();
   });
@@ -107,7 +107,7 @@ describe.only('9 - Renderize um input do tipo texto dentro do formulário em `<A
   });
 });
 
-describe.only('10 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o caminho da imagem do novo filme', () => {
+describe('10 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o caminho da imagem do novo filme', () => {
   it('Renderize um input de texto para quem usa inserir a url da imagem do filme', () => {
     expect(imageInput).toBeInTheDocument();
   });
@@ -127,7 +127,7 @@ describe.only('10 - Renderize um input do tipo texto dentro do formulário em `<
   });
 });
 
-describe.only('11 - Renderize uma `textarea` dentro do formulário em `<AddMovie />` para obter a sinopse do novo filme', () => {
+describe('11 - Renderize uma `textarea` dentro do formulário em `<AddMovie />` para obter a sinopse do novo filme', () => {
   it('Renderize um input de texto para quem usa escrever a sinopse do filme', () => {
     expect(storylineInput).toBeInTheDocument();
   });

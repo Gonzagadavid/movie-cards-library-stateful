@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { func, string } from 'prop-types';
+import { func, number, string } from 'prop-types';
 
-class InputText extends Component {
+class InputNumber extends Component {
   render() {
     const {
       inputId, inputName, handler,
-      inputValue, labelDataId, labelText,
+      inputValue, labelText,
     } = this.props;
     return (
-      <label htmlFor={ inputId } data-testid={ labelDataId }>
+      <label htmlFor={ inputId } data-testid={ `${inputId}-label` }>
         {labelText}
         <input
           type="number"
@@ -23,13 +23,12 @@ class InputText extends Component {
   }
 }
 
-InputText.propTypes = {
+InputNumber.propTypes = {
   inputId: string.isRequired,
   inputName: string.isRequired,
   handler: func.isRequired,
   inputValue: number.isRequired,
-  labelDataId: string.isRequired,
   labelText: string.isRequired,
 };
 
-export default InputText;
+export default InputNumber;

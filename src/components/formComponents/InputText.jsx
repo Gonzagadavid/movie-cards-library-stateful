@@ -5,10 +5,10 @@ class InputText extends Component {
   render() {
     const {
       inputId, inputName, handler,
-      inputValue, labelDataId, labelText,
+      inputValue, labelText,
     } = this.props;
     return (
-      <label htmlFor={ inputId } data-testid={ labelDataId }>
+      <label htmlFor={ inputId } data-testid={ `${inputId}-label` }>
         {labelText}
         <input
           type="text"
@@ -28,7 +28,6 @@ InputText.propTypes = {
   inputName: string.isRequired,
   handler: func.isRequired,
   inputValue: string.isRequired,
-  labelDataId: string.isRequired,
   labelText: string.isRequired,
 };
 

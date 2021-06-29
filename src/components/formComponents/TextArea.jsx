@@ -5,10 +5,10 @@ class TextArea extends Component {
   render() {
     const {
       textId, textName, handler,
-      textValue, labelDataId, labelText,
+      textValue, labelText,
     } = this.props;
     return (
-      <label htmlFor={ textId } data-testid={ labelDataId }>
+      <label htmlFor={ textId } data-testid={ `${textId}-label` }>
         {labelText}
         <textarea
           type="text"
@@ -28,7 +28,6 @@ TextArea.propTypes = {
   textName: string.isRequired,
   handler: func.isRequired,
   textValue: string.isRequired,
-  labelDataId: string.isRequired,
   labelText: string.isRequired,
 };
 
