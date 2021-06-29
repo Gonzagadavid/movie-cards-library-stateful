@@ -6,8 +6,9 @@ import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
 
 class MovieLibrary extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.onAddMovie = this.onAddMovie.bind(this);
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
@@ -15,7 +16,7 @@ class MovieLibrary extends Component {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      ...this.props,
+      movies: [...props.movies],
     };
   }
 
@@ -34,9 +35,16 @@ class MovieLibrary extends Component {
     this.setState({ selectedGenre: value });
   }
 
+  onAddMovie(movie) {
+    this.setState(({ movies: oldMOvies }) => {
+      oldMOvies.push(movie);
+      return { movies: oldMOvies };
+    });
+  }
+
   render() {
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
-    let { movies } = this.props;
+    let { movies } = this.state;
     if (bookmarkedOnly) movies = movies.filter(({ bookmarked }) => bookmarked);
     if (selectedGenre) movies = movies.filter(({ genre }) => genre === selectedGenre);
     if (searchText) {
@@ -57,7 +65,7 @@ class MovieLibrary extends Component {
           onSelectedGenreChange={ this.onSelectedGenreChange }
         />
         <MovieList movies={ movies } />
-        <AddMovie onClick={ () => true } />
+        <AddMovie onClick={ this.onAddMovie } />
       </div>
     );
   }
