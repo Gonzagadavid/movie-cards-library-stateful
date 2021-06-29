@@ -4,6 +4,14 @@ body {
   font-size: 16px;
 }
 
+input, textarea, select {
+  margin: 10px;
+}
+
+label {
+  margin: 20px;
+}
+
 .movie-card-header {
   align-items: center;
   background-color: #343a40;
