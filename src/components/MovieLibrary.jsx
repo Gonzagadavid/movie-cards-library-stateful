@@ -36,10 +36,7 @@ class MovieLibrary extends Component {
   }
 
   onAddMovie(movie) {
-    this.setState(({ movies: oldMOvies }) => {
-      oldMOvies.push(movie);
-      return { movies: oldMOvies };
-    });
+    this.setState(({ movies: oldMOvies }) => ({ movies: [...oldMOvies, movie] }));
   }
 
   render() {
